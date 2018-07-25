@@ -22,9 +22,9 @@
 					<form class="save_job" id="save_job" action="/users/save_jobs" method="post">
 						<input type="hidden" name="save_job" value="<%=job["id"]%>" class="submit">
 						<%if job_saved? job["id"] %>
-						<button disabled>save_job</button>
+						<button class="savejobs" disabled>saved</button>
 						<% else %>
-						<button>save_job</button>
+						<button class="savejobs">save_job</button>
 						<% end %>
 					</form>
 					</td>
