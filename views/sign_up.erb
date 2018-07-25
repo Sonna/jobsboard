@@ -1,0 +1,28 @@
+<h2 class="pagetitle">Sign up</h2>
+<div class="form">
+
+  <form class="new_user" id="new_user" action="/users/sign_up_session" method="post">
+    <div class="field">
+      <label for="user_email">Email</label>
+      <input class="text" type="text" value="" name="email" id="user_email">
+    </div>
+
+    <div class="field">
+      <label for="user_password">Password</label>
+      <input class="text" type="password" name="password" id="user_password">
+    </div>
+
+    <div class="field">
+      <label for="user_password_confirmation">Password confirmation</label>
+      <input class="text" type="password" name="password_confirmation" id="user_password_confirmation">
+    </div>
+
+    <div class="field">
+      <input type="submit" name="commit" value="Sign up" class="submit">
+    </div>
+
+  </form>
+  <p class="problem">
+    <a class="forgot" href="/users/password/new">Forgot your password?</a>
+  </p>
+</div>

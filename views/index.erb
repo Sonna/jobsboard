@@ -1,0 +1,20 @@
+<table cellspacing="0" class="joblist">
+    <thead>
+	<tr>
+		<th>posted</th>
+		<th>title</th>
+		<th>company_name</th>
+		<th>location</th>
+	</tr>
+	</thead>
+	<tbody>	
+ 		<% @jobs.each do |job| %>
+			<tr>
+			    <td><%= job["listingdate"][0..9] %></td>
+			    <td><a href="https://www.seek.com.au/job/<%=job["id"]%>" target="_blank"><%= job["title"] %></a></td>
+			    <td><%= job["description"] %></td>
+			    <td><%= job["location"] %></td>
+		    </tr>
+	    <% end %>
+    </tbody>
+</table>

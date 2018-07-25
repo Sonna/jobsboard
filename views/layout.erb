@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Jobs Lists</title>
+  <link rel='stylesheet' href='/stylesheets/main.css'>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header">
+        <h1>Jobs Lists</h1>
+        <div class="right">
+          <p class="member">
+          <a href="/users/sign_up">Sign up</a> | 
+          <a href="/users/login">Login</a>
+          </p>
+          <form id="search-form" class="search" action="/jobs">
+            <input type="text" name="keyword" id="keyword" value="" title="Search" class="text">
+            <input type="submit" name="commit" value="Search" disable_with="Submiting..." class="search-submit">
+          </form>
+        </div>
+    </div>
+    <div id="container">
+      <div id="container-inner">
+        <% flash.keys.each do |type| %>
+          <div data-alert class="flash <%= type %> alert-box radius">
+            <%= flash[type] %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <% end %>  
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
