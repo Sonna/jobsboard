@@ -33,7 +33,7 @@ helpers do
   end
 
   def job_saved? jobid
-    Favourite_jobs.where(user_id: session[:user_id], job_id:jobid).any?
+    FavouriteJobs.where(user_id: session[:user_id], job_id:jobid).any?
   end
 
 end
@@ -108,7 +108,7 @@ delete '/users/logout_session' do
 end
 
 post '/users/save_jobs' do
-  favourite_jobs = Favourite_jobs.new
+  favourite_jobs = FavouriteJobs.new
   favourite_jobs.user_id = session[:user_id]
   favourite_jobs.job_id = params[:save_job]
   favourite_jobs.save

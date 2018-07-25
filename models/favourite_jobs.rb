@@ -1,2 +1,2 @@
-class Favourite_jobs < ActiveRecord::Base
+class FavouriteJobs < ActiveRecord::Base
 end
