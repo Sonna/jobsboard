@@ -101,9 +101,7 @@ end
 
 
 delete '/users/logout_session' do
-  # delete the session
   session[:user_id] = nil
-  # redirect to login
   redirect '/'
 end
 
@@ -115,4 +113,13 @@ post '/users/save_jobs' do
   redirect back
 end
 
+delete '/users/unsave_jobs/:jobid' do
+  FavouriteJobs.where(user_id: session[:user_id], job_id: params[:jobid]).destroy_all
+  redirect back
+end
+
+get '/users/dashboard' do
+
+erb :dashboard
+end
 
