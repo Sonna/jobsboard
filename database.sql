@@ -12,3 +12,11 @@ CREATE TABLE users (
   email VARCHAR(300),
   password_digest VARCHAR(400)
 );
+
+CREATE TABLE favourite_jobs (
+  id SERIAL4 PRIMARY KEY,
+  user_id INTEGER,
+  job_id varchar(50),
+  status varchar(50),
+  comment text
+)

@@ -1,10 +1,13 @@
 <table cellspacing="0" class="joblist">
     <thead>
 	<tr>
-		<th>posted</th>
-		<th>title</th>
-		<th>company_name</th>
-		<th>location</th>
+		<th>Posted</th>
+		<th>Title</th>
+		<th>Company_name</th>
+		<th>Location</th>
+		<% if logged_in? %>
+		<th>Save jobs</th>
+		<%end%>
 	</tr>
 	</thead>
   	<tbody>	
@@ -14,6 +17,18 @@
 			    <td><a href="https://www.seek.com.au/job/<%=job["id"]%>" target="_blank"><%= job["title"] %></a></td>
 			    <td><%= job["advertiser"]["description"] %></td>
 			    <td><%= job["location"] %></td>
+				<% if logged_in? %>
+					<td>
+					<form class="save_job" id="save_job" action="/users/save_jobs" method="post">
+						<input type="hidden" name="save_job" value="<%=job["id"]%>" class="submit">
+						<%if job_saved? job["id"] %>
+						<button disabled>save_job</button>
+						<% else %>
+						<button>save_job</button>
+						<% end %>
+					</form>
+					</td>
+				<%end%>
 		    </tr>
 	    <% end %>
     </tbody>

@@ -6,6 +6,7 @@ require 'httparty'
 require_relative 'db_config'
 require_relative 'models/jobs'
 require_relative 'models/users'
+require_relative 'models/favourite_jobs'
 require 'pry'
 
 helpers do
@@ -20,7 +21,7 @@ helpers do
   end
 
   def alreay_sign_in email
-    !!User.find_by(email: email)
+    User.find_by(email: email)
   end
 
   def current_user
@@ -28,12 +29,13 @@ helpers do
   end
 
   def logged_in?
-    if current_user
-      true
-    else
-      false
-    end
+   current_user ? true : false
   end
+
+  def job_saved? jobid
+    Favourite_jobs.where(user_id: session[:user_id], job_id:jobid).any?
+  end
+
 end
 
 enable :sessions
@@ -82,7 +84,7 @@ get '/users/login' do
 end
 
 post '/users/login_session' do
-  user = User.find_by(email: params[:email])
+  user = alreay_sign_in params[:email]
   if user
     if user.authenticate(params[:password])
       session[:user_id] = user.id
@@ -97,5 +99,20 @@ post '/users/login_session' do
   end
 end
 
+
+delete '/users/logout_session' do
+  # delete the session
+  session[:user_id] = nil
+  # redirect to login
+  redirect '/'
+end
+
+post '/users/save_jobs' do
+  favourite_jobs = Favourite_jobs.new
+  favourite_jobs.user_id = session[:user_id]
+  favourite_jobs.job_id = params[:save_job]
+  favourite_jobs.save
+  redirect back
+end
 
 

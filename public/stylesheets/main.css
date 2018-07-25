@@ -29,7 +29,7 @@ body {
 #header h1 {
   display: inline;
 }
-#header p a {
+#header a {
   color: #000;
 }
 a:link, a:visited {
