@@ -8,14 +8,20 @@
 <body>
   <div id="wrapper">
     <div id="header">
-        <h1>Jobs Lists</h1>
+        <h1><a href="/">Jobs Lists</a></h1>
         <div class="right">
           <div class="member">
             <% if logged_in? %>
-              <div class="logout"><span>Welcome back <%= current_user.email%></span>
-                <form action="/users/logout_session" method="post">
+              <div class="logout">
+                <a class="btn_dashboard" href="/users/dashboard">
+                  <img src="/images/dashboard.png" width="25" height="25" alt="submit" />
+                </a>
+                <span>welcome back <%= current_user.email%></span>
+                <form action="/users/logout_session" method="post" class="logout_form">
                   <input type="hidden" name="_method" value="delete">
-                  <button>logout</button>
+                  <button class="btn_logout">
+                  <img src="/images/logout.png" width="25" height="25" alt="submit" />
+                  </button>
                 </form>
               </div>
               <% else %>          

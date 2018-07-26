@@ -28,6 +28,7 @@ body {
 }
 #header h1 {
   display: inline;
+  font-size: 24px;
 }
 #header a {
   color: #000;
@@ -55,6 +56,30 @@ a:link, a:visited {
   height: 22px;
   font-size: 100%;
 }
+.logout{
+  display: flex;
+}
+span{
+  flex: 0 0 80%;
+  margin-right:5px;
+  margin-top: 5px;
+}
+.logout_form{
+  flex: 1;
+}
+
+.btn_logout{
+  padding: 0;
+  border: none;
+  background: none;
+}
+.btn_dashboard{
+  padding: 0;
+  border: none;
+  background: none;
+  margin-right: 10px;
+}
+
 #header .search-submit {
   background: url(/images/search_button_green.png) no-repeat;
   width: 30px;
@@ -129,8 +154,6 @@ td a{
   border: 1px solid #ddd;
   border-top: 1px solid #888;
   padding: 5px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 input {
@@ -173,4 +196,12 @@ a:link, a:visited {
 
 .job_apply_progress{
   margin-top: 50px;
+}
+
+textarea{
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 1px solid #888;
+    padding: 5px;
+    border-radius: 3px;
 }

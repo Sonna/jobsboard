@@ -146,3 +146,11 @@ get '/users/saved_jobs/edit/:id' do
   erb :edit
 end
 
+put '/users/update_status/:id' do
+  favourite_job = FavouriteJob.find_by(job_id: params[:id])
+  favourite_job.status = params[:status]
+  favourite_job.comment = params[:comment]
+  favourite_job.save
+  redirect '/users/dashboard'
+end
+

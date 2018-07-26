@@ -27,17 +27,19 @@
 
 <div class="form job_apply_progress">
 
-  <form class="new_user" id="new_user" action="" method="post">
+  <form class="application_status" id="application_status" action="/users/update_status/<%=@edit_progress_job["id"]%>" method="post">
+    <input type="hidden" name="_method" value="put">  
+    
     <div class="field">
-      <label for="user_email">Application_status</label>
-      <input class="text" type="text" value="" name="email" id="user_email">
+      <label for="application_status">Application_status</label>
+      <input class="text" type="text" value="" name="status" id="status">
     </div>
 
     <div class="field">
-      <label for="user_password">Comment</label>
-      <input class="text" type="password" name="password" id="user_password">
+      <label for="comment">Comment</label>
+      <textarea rows="10" cols="44" name="comment" form="application_status">
+Enter text here...</textarea>
     </div>
-
 
     <div class="field">
       <input type="submit" name="commit" value="Save" class="submit">
