@@ -57,6 +57,10 @@ helpers do
     FavouriteJob.find_by(job_id: job_id)['status']
   end
 
+  def get_job_comment job_id
+    !!FavouriteJob.find_by(job_id: job_id)['comment']
+  end
+
 end
 
 enable :sessions

@@ -77,13 +77,13 @@ span{
   padding: 0;
   border: none;
   background: none;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #header .search-submit {
-  background: url(/images/search_button_green.png) no-repeat;
-  width: 30px;
-  height: 28px;
+  background: url(/images/job.png) no-repeat;
+  width: 32px;
+  height: 32px;
   border: 0;
   position: absolute;
   right: 0;
@@ -185,13 +185,12 @@ a:link, a:visited {
 }
 
 .savejobs {
-  padding: 4px 25px;
   font-size: 12px;
   font-weight: bold;
   border-radius: 15px;
   background-image: url(/images/bg-button.png);
   background-repeat: repeat-x;
-  width: 100px;
+  width: 50px;
 }
 
 .job_apply_progress{

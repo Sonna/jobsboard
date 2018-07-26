@@ -7,6 +7,7 @@
 		<th>Location</th>
 		<th>Status</th>
 		<th/>
+		<th/>
 	</tr>
 	</thead>
 	<tbody>	
@@ -16,14 +17,20 @@
 			    <td><a href="https://www.seek.com.au/job/<%=saved_job["jobid"]%>" target="_blank"><%= saved_job["title"] %></a></td>
 			    <td><%= saved_job["description"] %></td>
 			    <td><%= saved_job["location"] %></td>
-					<td><%= get_job_status saved_job["id"]%>
-					<td>
+				<td><%= get_job_status saved_job["id"]%>
+				<td>
+				<%if get_job_comment saved_job["id"]%>
+				<a class="btn_comment" href="/users/saved_jobs/edit/<%=saved_job["id"]%>">
+                  	<img src="/images/check-list.png"  alt="comment" /></a>
+				<%end%>
+				</td>
+				<td>
 						<form class="edit_job" id="edit_job" action="/users/saved_jobs/edit/<%=saved_job["id"]%>" method="get">
 						<input type="hidden" name="id" class="submit">
 						<button class="savejobs">edit</button>
 						</form>
-					</td>
+				</td>
 		    </tr>
-	    <% end %>
+	<% end %>
   </tbody>
 </table>
