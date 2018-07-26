@@ -10,8 +10,8 @@ require_relative 'models/favourite_job'
 
 helpers do
   
-  def job_search_result search_term
-    url = "https://chalice-search-experience-api.cloud.seek.com.au/search?where=All+Australia&page=1&seekSelectAllPages=true&keywords=#{search_term}&classification=6281&isDesktop=true"
+  def job_search_result search_term, page
+    url = "https://chalice-search-experience-api.cloud.seek.com.au/search?where=All+Australia&page=#{page}&seekSelectAllPages=true&keywords=#{search_term}&classification=6281&isDesktop=true"
     HTTParty.get(url)
   end
   
@@ -71,7 +71,7 @@ get '/' do
 end
 
 get '/jobs' do
-  @jobs = (job_search_result params[:keyword]).parsed_response['data']
+  @jobs = (job_search_result params[:keyword],params[:page]).parsed_response['data']
   save_search_job_in_DB @jobs
 
   erb :jobs

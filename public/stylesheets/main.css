@@ -190,7 +190,7 @@ a:link, a:visited {
   border-radius: 15px;
   background-image: url(/images/bg-button.png);
   background-repeat: repeat-x;
-  width: 50px;
+  width: 80px;
 }
 
 .job_apply_progress{
@@ -203,4 +203,8 @@ textarea{
     border-top: 1px solid #888;
     padding: 5px;
     border-radius: 3px;
+}
+
+.next_page{
+  margin-top: 3px;
 }
