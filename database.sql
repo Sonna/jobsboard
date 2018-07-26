@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE favourite_jobs (
   id SERIAL4 PRIMARY KEY,
   user_id INTEGER,
-  job_id varchar(50),
+  job_id INTEGER,
   status varchar(50),
   comment text
-)
+);

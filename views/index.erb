@@ -19,14 +19,14 @@
 			    <td><%= job["location"] %></td>
 				<% if logged_in? %>
 				<td>
-					<%if job_saved? job["jobid"] %>
-						<form class="save_job" id="save_job" action="/users/unsave_jobs/<%=job["jobid"]%>" method="post">
+					<%if job_saved? job["id"] %>
+						<form class="save_job" id="save_job" action="/users/unsave_jobs/<%=job["id"]%>" method="post">
 						<input type="hidden" name="_method" value="delete" class="submit">
 						<button class="savejobs">unsaved</button>
 						</form>
 					<% else %>
 						<form class="save_job" id="save_job" action="/users/save_jobs" method="post">
-						<input type="hidden" name="save_job" value="<%=job["jobid"]%>" class="submit">
+						<input type="hidden" name="save_job" value="<%=job["id"]%>" class="submit">
 						<button class="savejobs">save_job</button>
 						</form>
 					<% end %>

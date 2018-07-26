@@ -18,16 +18,20 @@
 			    <td><%= job["advertiser"]["description"] %></td>
 			    <td><%= job["location"] %></td>
 				<% if logged_in? %>
-					<td>
-					<form class="save_job" id="save_job" action="/users/save_jobs" method="post">
-						<input type="hidden" name="save_job" value="<%=job["id"]%>" class="submit">
-						<%if job_saved? job["id"] %>
-						<button class="savejobs" disabled>saved</button>
-						<% else %>
+				<td>
+					<%if job_saved? get_integer_job_id job["id"] %>
+						<form class="save_job" id="save_job" action="/users/unsave_jobs/<%=get_integer_job_id job["id"]%>" method="post">
+						<input type="hidden" name="_method" value="delete" class="submit">
+						<button class="savejobs">unsaved</button>
+						</form>
+					<% else %>
+						<form class="save_job" id="save_job" action="/users/save_jobs" method="post">
+						<input type="hidden" name="save_job" value="<%=get_integer_job_id job["id"]%>" class="submit">
 						<button class="savejobs">save_job</button>
-						<% end %>
-					</form>
-					</td>
+						</form>
+					<% end %>
+					
+				</td>
 				<%end%>
 		    </tr>
 	    <% end %>

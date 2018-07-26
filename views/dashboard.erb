@@ -1,0 +1,29 @@
+<table cellspacing="0" class="joblist">
+    <thead>
+	<tr>
+		<th>Posted</th>
+		<th>Title</th>
+		<th>Company_name</th>
+		<th>Location</th>
+		<th>Status</th>
+		<th/>
+	</tr>
+	</thead>
+	<tbody>	
+	<% @user_saved_jobs.each do |saved_job| %>
+			<tr>
+			    <td><%= saved_job["listingdate"][0..9] %></td>
+			    <td><a href="https://www.seek.com.au/job/<%=saved_job["jobid"]%>" target="_blank"><%= saved_job["title"] %></a></td>
+			    <td><%= saved_job["description"] %></td>
+			    <td><%= saved_job["location"] %></td>
+					<td><%= get_job_status saved_job["id"]%>
+					<td>
+						<form class="edit_job" id="edit_job" action="/users/saved_jobs/edit/<%=saved_job["id"]%>" method="get">
+						<input type="hidden" name="id" class="submit">
+						<button class="savejobs">edit</button>
+						</form>
+					</td>
+		    </tr>
+	    <% end %>
+  </tbody>
+</table>

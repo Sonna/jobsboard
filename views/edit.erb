@@ -1,0 +1,47 @@
+<h2 class="pagetitle">Update application status</h2>
+<table cellspacing="0" class="joblist">
+  <tbody>
+    <tr>
+      <td>ListingDate</td>
+      <td><%= @edit_progress_job["listingdate"][0..9] %></td>
+    </tr>
+    <tr>
+      <td>Job_title</td>
+      <td><a href="https://www.seek.com.au/job/<%=@edit_progress_job[" jobid "]%>" target="_blank">
+          <%= @edit_progress_job["title"] %></a></td>
+    </tr>
+    <tr>
+      <td>Company / Agent</td>
+      <td><%= @edit_progress_job["description"] %></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><%= @favourite_job['status']%><td>
+    </tr>
+    <tr>
+      <td>Comment</td>
+      <td><%= @favourite_job['comment']%><td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="form job_apply_progress">
+
+  <form class="new_user" id="new_user" action="" method="post">
+    <div class="field">
+      <label for="user_email">Application_status</label>
+      <input class="text" type="text" value="" name="email" id="user_email">
+    </div>
+
+    <div class="field">
+      <label for="user_password">Comment</label>
+      <input class="text" type="password" name="password" id="user_password">
+    </div>
+
+
+    <div class="field">
+      <input type="submit" name="commit" value="Save" class="submit">
+    </div>
+
+  </form>
+</div>

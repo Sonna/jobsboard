@@ -4,10 +4,9 @@ require 'sinatra/reloader'
 require 'sinatra/flash'
 require 'httparty'
 require_relative 'db_config'
-require_relative 'models/jobs'
-require_relative 'models/users'
-require_relative 'models/favourite_jobs'
-require 'pry'
+require_relative 'models/job'
+require_relative 'models/user'
+require_relative 'models/favourite_job'
 
 helpers do
   
@@ -18,6 +17,20 @@ helpers do
   
   def alreay_in_db jobid
     !Job.find_by(jobid: jobid)
+  end
+
+  def save_search_job_in_DB jobs
+    jobs.each do |result_job|
+      if alreay_in_db result_job['id']
+        job = Job.new
+        job.jobid = result_job['id']
+        job.listingdate = result_job['listingDate']
+        job.description = result_job["advertiser"]["description"]
+        job.title = result_job['title']
+        job.location = result_job['location']
+        job.save
+      end
+    end
   end
 
   def alreay_sign_in email
@@ -33,7 +46,15 @@ helpers do
   end
 
   def job_saved? jobid
-    FavouriteJobs.where(user_id: session[:user_id], job_id:jobid).any?
+    FavouriteJob.where(user_id: session[:user_id], job_id:jobid).any?
+  end
+
+  def get_integer_job_id long_job_id
+    Job.find_by(jobid:long_job_id)['id']
+  end
+
+  def get_job_status job_id
+    FavouriteJob.find_by(job_id: job_id)['status']
   end
 
 end
@@ -47,18 +68,9 @@ end
 
 get '/jobs' do
   @jobs = (job_search_result params[:keyword]).parsed_response['data']
-  @jobs.each do |result_job|
-    if alreay_in_db result_job['id']
-      job = Job.new
-      job.jobid = result_job['id']
-      job.listingdate = result_job['listingDate']
-      job.description = result_job["advertiser"]["description"]
-      job.title = result_job['title']
-      job.location = result_job['location']
-      job.save
-    end
-  end
-    erb :jobs
+  save_search_job_in_DB @jobs
+
+  erb :jobs
 end
 
 get '/users/sign_up' do
@@ -88,7 +100,7 @@ post '/users/login_session' do
   if user
     if user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/'
+      redirect '/users/dashboard'
     else 
       flash[:notice] = "Incorrect Password!"
       redirect '/users/login'
@@ -106,20 +118,31 @@ delete '/users/logout_session' do
 end
 
 post '/users/save_jobs' do
-  favourite_jobs = FavouriteJobs.new
+  favourite_jobs = FavouriteJob.new
   favourite_jobs.user_id = session[:user_id]
   favourite_jobs.job_id = params[:save_job]
+  favourite_jobs.status = "not apply"
   favourite_jobs.save
   redirect back
 end
 
 delete '/users/unsave_jobs/:jobid' do
-  FavouriteJobs.where(user_id: session[:user_id], job_id: params[:jobid]).destroy_all
+  FavouriteJob.where(user_id: session[:user_id], job_id: params[:jobid]).destroy_all
   redirect back
 end
 
-get '/users/dashboard' do
+get '/users/dashboard' do 
+  if !logged_in?
+    redirect '/users/login'
+  else
+    @user_saved_jobs = User.find_by(id: session[:user_id]).jobs
+    erb :dashboard
+  end
+end
 
-erb :dashboard
+get '/users/saved_jobs/edit/:id' do
+  @edit_progress_job = Job.find_by(id: params[:id])
+  @favourite_job = @edit_progress_job.favourite_jobs.first
+  erb :edit
 end
 
