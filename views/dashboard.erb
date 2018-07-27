@@ -25,10 +25,16 @@
 				<%end%>
 				</td>
 				<td>
-						<form class="edit_job" id="edit_job" action="/users/saved_jobs/edit/<%=saved_job["id"]%>" method="get">
-						<input type="hidden" name="id" class="submit">
-						<button class="savejobs">edit</button>
-						</form>
+					<form class="edit_job" id="edit_job" action="/users/saved_jobs/edit/<%=saved_job["id"]%>" method="get">
+					<input type="hidden" name="id" class="submit">
+					<button class="savejobs">edit</button>
+					</form>
+
+					
+					<form class="dashboard_unsave_job" id="save_job" action="/users/unsave_jobs/<%=saved_job["id"]%>" method="post">
+					<input type="hidden" name="_method" value="delete" class="submit">
+					<button class="savejobs">unsaved</button>
+					</form>
 				</td>
 		    </tr>
 	<% end %>
