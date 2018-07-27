@@ -39,7 +39,7 @@
 
 <div class="pagination" align="right">
 <%if params[:page].to_i >1%>
-<a href="/jobs?keyword=<%=params[:keyword]%>&page=<%=params[:page].to_i-1%>"><img src="/images/pre-page.png" width="12" height="12" alt="pre" /> pre</a>
+<a href="/jobs?keyword=<%=params[:keyword]%>&page=<%=params[:page].to_i-1%>"><img src="/images/pre-page.png" width="12" height="12" alt="pre" /> prev</a>
 <%end%>
 <a href="/jobs?keyword=<%=params[:keyword]%>&page=<%=params[:page].to_i+1%>">next <img src="/images/next-page.png" width="12" height="12" alt="next" /></a>
 </div>
