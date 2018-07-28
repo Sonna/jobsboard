@@ -11,9 +11,8 @@ Job board for user to track their job application
 
 ## How to get started?
 
-```
-https://warm-crag-45131.herokuapp.com/
-```
+[https://warm-crag-45131.herokuapp.com/](https://warm-crag-45131.herokuapp.com/)
+
 Application hosts on heroku.
 
 ## User Stories
